@@ -1,5 +1,7 @@
 use std::collections::HashMap;
-use super::orderbook::{OrderBook, Order, self};
+use rust_decimal::Decimal;
+
+use super::orderbook::{OrderBook, Order};
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 pub struct TradingPair {
@@ -37,7 +39,7 @@ impl MatchingEngine {
 		println!("Opening new orderbook for market {:?}", pair.to_string());
 	}
 
-	pub fn place_limit_order(&mut self, pair: TradingPair, price: f64, order: Order) -> Result<(), String> {
+	pub fn place_limit_order(&mut self, pair: TradingPair, price: Decimal, order: Order) -> Result<(), String> {
 		match self.orderbooks.get_mut(&pair) {
 			Some(orderbook) => {
 				orderbook.add_order(price, order);
