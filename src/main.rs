@@ -10,11 +10,11 @@ fn main() {
 	let buy_order_from_bob = Order::new(BidOrAsk::Bid, 2.45);
 	
 	let mut order_book = OrderBook::new();
-	order_book.add_order(dec!(4.4), buy_order_from_alice);
-	order_book.add_order(dec!(4.4), buy_order_from_bob);
+	order_book.add_limit_order(dec!(4.4), buy_order_from_alice);
+	order_book.add_limit_order(dec!(4.4), buy_order_from_bob);
 	
 	let sell_order = Order::new(BidOrAsk::Ask, 22.45);
-	order_book.add_order(dec!(10.0), sell_order);
+	order_book.add_limit_order(dec!(10.0), sell_order);
 	
 	// println!("{:?}", order_book);
 	let mut engine = MatchingEngine::new();
